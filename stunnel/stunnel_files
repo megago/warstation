@@ -1,0 +1,6 @@
+docker run -itd --name stunnel_server     -p 443:443 -v $(pwd)/stunnel/stunnel.conf:/etc/stunnel/stunnel.conf:ro -v $(pwd)/stunnel/certs:/etc/stunnel:ro  -e STUNNEL_CLIENT=nO -e STUNNEL_SERVICE=https_proxy     -e STUNNEL_ACCEPT=443     -e STUNNEL_CONNECT=warstation_app:8080     dweomer/stunnel
+
+
+
+docker run -itd --name stunnel_server -p 443:443 -v $(pwd)/stunnel/stunnel.conf:/etc/stunnel/stunnel.conf:ro -e STUNNEL_CERT=/stunnel/certs/stunnel.crt -e STUNNEL_KEY=/stunnel/certs/stunnel.key -e STUNNEL_CLIENT=nO -e STUNNEL_SERVICE=https_proxy -e STUNNEL_ACCEPT=443 -e STUNNEL_CONNECT=localhost:8080 adohkan/stunnel
+

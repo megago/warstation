@@ -1,0 +1,1 @@
+scp -r root@towingcar.kz:/etc/letsencrypt/live/towingcar.kz/ /

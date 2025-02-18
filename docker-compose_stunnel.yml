@@ -1,0 +1,82 @@
+networks:
+  proxy_nets:
+    driver: bridge
+
+services:
+  app:
+    build: .
+    container_name: warstation_app
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    volumes:
+      - ./certs:/etc/ssl/certs
+    networks:
+      - proxy_nets
+
+  server:
+    image: easypi/stunnel
+    ports:
+      - "9080:9080"
+    volumes:
+      - ./stunnel_epi/data:/etc/stunnel
+      - ./stunnel_epi/data/server.conf:/etc/stunnel/stunnel.conf
+    restart: always
+    networks:
+      - proxy_nets
+
+  client:
+    image: easypi/stunnel
+    ports:
+      - "9050:9050"
+      - "9051:9051"
+    volumes:
+      - ./stunnel_epi/data:/etc/stunnel
+      - ./stunnel_epi/data/client.conf:/etc/stunnel/stunnel.conf
+    extra_hosts:
+      - server:1.2.3.4
+    restart: always
+    networks:
+      - proxy_nets
+
+#  stunnel:
+#    build: ./stunnel
+#    ports:
+#      - "443:443"
+#    volumes:
+#      - ./stunnel/stunnel.conf:/etc/stunnel/stunnel.conf:ro
+#      - ./stunnel/certs:/etc/stunnel/certs:ro
+#    restart: always
+#    tmpfs:
+#      - /var/run/stunnel
+#    networks:
+#      - proxy_nets
+#    entrypoint: ["/entrypoint.sh"]
+
+#  stunnel:
+#    build: ./stunnel
+#    container_name: stunnel_server
+#    restart: always
+#    ports:
+#      - "443:443"  # Stunnel listens on HTTPS
+#    volumes:
+#      - ./stunnel/stunnel.conf:/etc/stunnel/stunnel.conf:ro
+#      - ./stunnel/certs:/etc/stunnel/certs:ro
+#    networks:
+#      - proxy_net
+
+
+#client:
+#  image: easypi/stunnel
+#  ports:
+#    - "9050:9050"
+#    - "9051:9051"
+#  volumes:
+#    - ./data:/etc/stunnel
+#    - ./data/client.conf:/etc/stunnel/stunnel.conf
+#    - ./stunnel/certs:/etc/stunnel/certs:ro
+#  extra_hosts:
+#    - server:1.2.3.4
+#  restart: always

@@ -2,3 +2,10 @@ scp -r root@towingcar.kz:/etc/letsencrypt/live/towingcar.kz/ /
 
 
 scp -r C:/Users/yerzhant/.ssh/ root:lLnbX1214HP7@185.105.109.199:/root/.ssh/
+
+openssl pkcs12 -export \
+    -in fullchain.pem \
+    -inkey privkey.pem \
+    -out keystore.p12 \
+    -name tomcat \
+    -password pass:warstation

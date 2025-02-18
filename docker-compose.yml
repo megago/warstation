@@ -5,7 +5,7 @@ services:
     build: .
     container_name: warstation_app
     ports:
-      - "8080:8080"
+      - "443:443"
     environment:
       - SPRING_PROFILES_ACTIVE=prod
     volumes:
@@ -17,7 +17,7 @@ services:
     container_name: nginx_proxy
     restart: always
     ports:
-      - "443:443"   # Only listen on HTTPS
+      - "8080:8080"   # Only listen on HTTPS
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx_certs:/etc/nginx/certs:ro

@@ -1,1 +1,4 @@
 scp -r root@towingcar.kz:/etc/letsencrypt/live/towingcar.kz/ /
+
+
+scp -r C:/Users/yerzhant/.ssh/ root:lLnbX1214HP7@185.105.109.199:/root/.ssh/

@@ -5,9 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -15,17 +12,18 @@ import java.util.Map;
 public class StatisticsController {
 
     @PostMapping
-    public ResponseEntity<Map<String, Boolean>> postRoundStatistics(@RequestBody Map<String, Object> requestBody) {
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("success", true);
+    public ResponseEntity<String> postRoundStatistics(@RequestBody Map<String, Object> requestBody) {
+        String jsonResponse = "{\n" +
+                "  \"success\": true\n" +
+                "}";
 
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONNECTION, "keep-alive");
-        headers.add(HttpHeaders.CONTENT_LENGTH, "16");
+        headers.add(HttpHeaders.CONTENT_LENGTH, "23");
         headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
-        headers.add("Date", ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME));
+        headers.add("date", "Tue, 28 Jan 2025 17:05:08 GMT");
         headers.add(HttpHeaders.SERVER, "nginx/1.22.1");
 
-        return new ResponseEntity<>(response, headers, HttpStatus.OK);
+        return new ResponseEntity<>(jsonResponse, headers, HttpStatus.OK);
     }
 }

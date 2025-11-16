@@ -1,6 +1,8 @@
+kz\warstation\api\controller\AuthController.class
+kz\warstation\api\controller\YandexCludConfigController.class
 kz\warstation\api\controller\ServerController.class
+kz\warstation\api\controller\AdsController.class
 kz\warstation\api\controller\ProfileController.class
 kz\warstation\api\controller\StatisticsController.class
-kz\warstation\api\filter\HostRoutingFilter.class
-kz\warstation\api\controller\AuthController.class
 kz\warstation\api\ApiApplication.class
+kz\warstation\api\filter\HostRoutingFilter.class

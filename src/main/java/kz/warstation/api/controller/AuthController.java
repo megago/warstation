@@ -5,8 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,18 +13,17 @@ import java.util.Map;
 public class AuthController {
 
     @PostMapping("/jwt/login")
-    public ResponseEntity<Map<String, String>> login(@RequestParam String username, @RequestParam String password) {
-        Map<String, String> response = new HashMap<>();
-        response.put("access_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzN2UyMmZhMi01NmViLTRmNTgtYWNmZC1kOWUyZThlMTkzMDkiLCJhdWQiOlsiZmFzdGFwaS11c2VyczphdXRoIl0sImV4cCI6MTc2OTY5MjQwMX0.eKt6KDohbf8UDNmyLNkgKnOhNvIJ84GwF1hgRDW4YH0");
-        response.put("token_type", "bearer");
+    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
+        String jsonResponse = "{\"access_token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzN2UyMmZhMi01NmViLTRmNTgtYWNmZC1kOWUyZThlMTkzMDkiLCJhdWQiOlsiZmFzdGFwaS11c2VyczphdXRoIl0sImV4cCI6MTc3NTIxODMwMH0.OXn9YvotxziuTlCgDE0hABWcUkv5JsPry41N7YXaOBM\",\"token_type\":\"bearer\"}";
 
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONNECTION, "keep-alive");
         headers.add(HttpHeaders.CONTENT_LENGTH, "245");
         headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
-        headers.add("Date", ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME));
-        headers.add(HttpHeaders.SERVER, "nginx/1.16.1");
+        headers.add("date", "Sun, 05 Oct 2025 16:52:02 GMT");
+        headers.add("x-sign", "MEQCIBzH+M9cWlb24XzTR4QJSgQ7izmPCBNRbY73DIT9g7zJAiBiP4TUd4Aj31GufXce7XRBzTiX+k3egqjKm2gsJDKqOQ==");
+        headers.add(HttpHeaders.SERVER, "nginx/1.16.12");
 
-        return new ResponseEntity<>(response, headers, HttpStatus.OK);
+        return new ResponseEntity<>(jsonResponse, headers, HttpStatus.OK);
     }
 }

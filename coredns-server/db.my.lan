@@ -1,0 +1,5 @@
+$ORIGIN my.lan.
+@   3600 IN SOA ns.my.lan. admin.my.lan. (1 7200 3600 1209600 3600)
+@       IN NS    ns.my.lan.
+ns      IN A     10.0.0.1
+app     IN A     10.0.0.50

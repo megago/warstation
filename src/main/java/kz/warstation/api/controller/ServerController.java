@@ -4,9 +4,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,8 +20,9 @@ public class ServerController {
         headers.add(HttpHeaders.CONNECTION, "keep-alive");
         headers.add(HttpHeaders.CONTENT_LENGTH, "16");
         headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
-        headers.add("Date", ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME));
-        headers.add(HttpHeaders.SERVER, "nginx/1.16.1");
+        headers.add("date", "Sun, 05 Oct 2025 16:52:02 GMT");
+        headers.add("x-sign", "MEQCIGUi2WWLNxOZ5p7ekD95s7tx5qsm0BHDZDEFygbUE6zXAiAL4ptGypNS25sr7G6m/bG3r1BNcSJQzK3cPdU9o/1OPQ==");
+        headers.add(HttpHeaders.SERVER, "nginx/1.20.2");
 
         return new ResponseEntity<>(response, headers, HttpStatus.OK);
     }

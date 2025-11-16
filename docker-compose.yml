@@ -12,6 +12,17 @@ services:
       - ./certs:/etc/ssl/certs
     restart: always
 
+  coredns:
+    image: coredns/coredns:latest
+    container_name: coredns
+    volumes:
+      - ./coredns-server/Corefile:/Corefile
+      - ./coredns-server/zones:/zones
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    restart: unless-stopped
+
   nginx:
     image: nginx:latest
     container_name: nginx_proxy

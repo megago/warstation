@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim
+FROM azul/zulu-openjdk:17
 LABEL authors="yerzhant"
 WORKDIR /app
 COPY ./certs /etc/ssl/certs

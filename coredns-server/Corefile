@@ -1,0 +1,14 @@
+.:53 {
+    hosts {
+        192.168.0.111 warstation.ru
+        fallthrough
+    }
+    forward . 8.8.8.8 1.1.1.1
+    log
+    errors
+}
+
+my.lan:53 {
+    file zones/db.my.lan
+    log
+}

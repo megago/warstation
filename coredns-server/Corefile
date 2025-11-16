@@ -1,6 +1,8 @@
 .:53 {
     hosts {
-        192.168.0.111 warstation.ru
+        95.142.42.98 warstation.ru
+        95.142.42.98 api.warstation.ru
+        95.142.42.98 statistics.warstation.ru
         fallthrough
     }
     forward . 8.8.8.8 1.1.1.1
